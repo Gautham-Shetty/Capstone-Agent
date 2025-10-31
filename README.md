@@ -4,11 +4,12 @@ Capstone-Agent is an experimental agent framework implementing memory, evaluatio
 
 This repository collects the core pieces of a research-grade agent: agent orchestration, memory systems (episodic + semantic), a lightweight LLM client wrapper, evaluation harnesses, and optional guardrails and telemetry helpers.
 
-## Features
+## Features 
 
 - Core agent logic and typed agent models.
 - Episodic memory (local, JSON-backed) and a semantic memory store (Chroma embedding DB).
-- LLM client wrapper (see `gemini_client.py`) to centralize prompts/requests.
+- Implements Pydantic AI agents with encapsulated the core business logic (see `agents.py` and` agents_pydantic.py`).
+- Generates vector embeddings using Google GenAI’s text-embedding-004 model for   semantic understanding and retrieval tasks.
 - Evaluation runner for automated scenario testing (`evals_runner.py`).
 - Minimal MCP / server scaffolding (`mcp_server.py`) for exposing agent endpoints.
 - Observability helpers for OpenTelemetry (`otel_setup.py`).
@@ -24,7 +25,7 @@ Below is a short map of files in this repository and their roles:
 - `models.py` — Domain models and shared data classes.
 - `episodic_memory.py` — Local episodic memory implementation (JSON-backed store).
 - `semantic_memory.py` — Semantic memory abstraction using Chroma embeddings (data/chroma/semantic).
-- `gemini_client.py` — LLM client wrapper; centralizes API calls and prompt handling.
+- `gemini_client.py` — LLM client wrapper; for emdedding the content for semantic retrival and understanding
 - `evals_runner.py` — Harness to run evaluation scenarios and collect metrics.
 - `mcp_server.py` — Minimal MCP-compatible server scaffolding for exposing the agent as a service.
 - `otel_setup.py` — OpenTelemetry setup (traces/metrics helpers).
@@ -37,13 +38,12 @@ Data:
 
 - `data/memory.json` — local episodic memory dump used by the example.
 - `data/chroma/semantic/chroma.sqlite3` — Chroma DB used for semantic vectors.
-`data/chroma/semantic/chroma.sqlite3` — Chroma DB used for semantic vectors.
 
 ## Environment & credentials
 Below are the steps setup the agent 
 - uv sync
 -  source .venv/bin/activate
-- # docker run -d -p 16686:16686 -p 4317:4317 -p 4318:4318 jaegertracing/all-in-one:latest to setup the local OTEL
+- docker run -d -p 16686:16686 -p 4317:4317 -p 4318:4318 jaegertracing/all-in-one:latest to setup the local OTEL
 
 - export GOOGLE_API_KEY={YOUR GOOGLE API KEY}
 
