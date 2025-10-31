@@ -64,7 +64,7 @@ Notes:
 
 # Run evaluators
 
-You can run the evaluators directly. Using the `uv` runner (if installed) you can run:
+You can run the evaluators directly. Using the `uv` runner you can run:
 
 ```bash
 uv run evals_runner.py
