@@ -1,13 +1,10 @@
 from pydantic_ai import Agent, WebSearchTool,PromptedOutput
 from models import AnswerOutput, InsightOutput
-import google.generativeai as genai
-import os
 from pydantic_ai.toolsets.fastmcp    import FastMCPToolset
 
 from mcp_server import mcp
 
 
-genai.configure(api_key=os.getenv("API_KEY"))
 
 synthesizer_agent = Agent(
     model="google-gla:gemini-2.5-pro",

@@ -6,7 +6,6 @@ from agents import ask_second_brain,ask_internet,ask_funny_joke
 from episodic_memory import add_to_memory
 from semantic_memory import update
 from presideo_guardrail import redact_text
-# docker run -d -p 16686:16686 -p 4317:4317 -p 4318:4318 jaegertracing/all-in-one:latest
 
 
 app=typer.Typer()
